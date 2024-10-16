@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BikeSystem", "BikeSystem\BikeSystem.csproj", "{A374E7A0-B0C4-411D-A0E3-97C07EBC4C18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BikeSystem", "BikeSystem\BikeSystem.csproj", "{A374E7A0-B0C4-411D-A0E3-97C07EBC4C18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BikeSystem.Client", "BikeSystem.Client\BikeSystem.Client.csproj", "{E266DFA2-A940-45EE-B040-6DDB7743621E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BikeSystem.Client", "BikeSystem.Client\BikeSystem.Client.csproj", "{E266DFA2-A940-45EE-B040-6DDB7743621E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BikeSyste.Shared", "..\BikeSyste.Shared\BikeSyste.Shared.csproj", "{AEA49A83-32C3-4737-96FC-5CB833C03748}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BikeSyste.Shared", "BikeSyste.Shared\BikeSyste.Shared.csproj", "{95153967-3505-481D-92B5-330C06607055}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{E266DFA2-A940-45EE-B040-6DDB7743621E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E266DFA2-A940-45EE-B040-6DDB7743621E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E266DFA2-A940-45EE-B040-6DDB7743621E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AEA49A83-32C3-4737-96FC-5CB833C03748}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AEA49A83-32C3-4737-96FC-5CB833C03748}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AEA49A83-32C3-4737-96FC-5CB833C03748}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AEA49A83-32C3-4737-96FC-5CB833C03748}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95153967-3505-481D-92B5-330C06607055}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95153967-3505-481D-92B5-330C06607055}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95153967-3505-481D-92B5-330C06607055}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95153967-3505-481D-92B5-330C06607055}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

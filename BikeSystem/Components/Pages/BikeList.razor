@@ -1,6 +1,6 @@
 ﻿@page "/bikes"
 @inject IBikeService BikeService
-@rendermode InteractiveAuto
+@attribute [StreamRendering]
 
 <h3>BikeList</h3>
 
@@ -46,6 +46,8 @@ else
 
     protected override async Task OnInitializedAsync()
     {
+        await Task.Delay(1000);
+
         bikes = await BikeService.GenerateBike();
     }
 }
