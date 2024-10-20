@@ -10,5 +10,6 @@ namespace BikeSyste.Shared.Services
     public interface IUserService
     {
         Task<List<Users>> GenerateUser();
+        Task<bool> IsLogged();
     }
 }

@@ -10,6 +10,7 @@ builder.Services.AddRazorComponents()
     .AddInteractiveWebAssemblyComponents();
 
 builder.Services.AddScoped<IBikeService, BikeService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 var app = builder.Build();
 

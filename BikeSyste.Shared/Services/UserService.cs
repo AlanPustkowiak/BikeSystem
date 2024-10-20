@@ -9,24 +9,36 @@ namespace BikeSyste.Shared.Services
 {
     public class UserService : IUserService
     {
+        List<Users> users = new List<Users>();
         public Task<List<Users>> GenerateUser()
         {
-            List<Users> users = new List<Users>();
             Users user0 = new()
             {
                 Email = "test@test.pl",
                 Password = "test",
-                Role = "admin"
+                Role = "admin",
+                IsLogged = false
             }; 
             Users user1 = new()
             {
                 Email = "user@user.pl",
                 Password = "user",
-                Role = "user"
+                Role = "user",
+                IsLogged = false
             };
             users.Add(user0);
             users.Add(user1);
             return Task.FromResult(users);
+        }
+
+        public Task<bool> IsLogged()
+        {
+            bool result = false;
+            foreach (Users user in users)
+            {
+                if (user.IsLogged) { result = true; }
+            }
+            return Task.FromResult(result);
         }
     }
 }

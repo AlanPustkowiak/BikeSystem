@@ -11,5 +11,6 @@ namespace BikeSyste.Shared.Entities
         public required string Email { get; set; }
         public required string Password { get; set; }
         public required string Role { get; set; }
+        public bool IsLogged { get; set; }
     }
 }
