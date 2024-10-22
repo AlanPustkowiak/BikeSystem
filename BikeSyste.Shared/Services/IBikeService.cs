@@ -1,11 +1,11 @@
-﻿using BikeSystem.Entities;
+﻿using BikeSystem.Shared.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BikeSyste.Shared.Services
+namespace BikeSystem.Shared.Services
 {
     public interface IBikeService
     {

@@ -1,4 +1,4 @@
-﻿namespace BikeSystem.Entities
+﻿namespace BikeSystem.Shared.Entities
 {
     public class Bike
     {

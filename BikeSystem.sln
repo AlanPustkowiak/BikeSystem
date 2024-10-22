@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BikeSystem", "BikeSystem\Bi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BikeSystem.Client", "BikeSystem.Client\BikeSystem.Client.csproj", "{E266DFA2-A940-45EE-B040-6DDB7743621E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BikeSyste.Shared", "BikeSyste.Shared\BikeSyste.Shared.csproj", "{95153967-3505-481D-92B5-330C06607055}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BikeSystem.Shared", "BikeSyste.Shared\BikeSystem.Shared.csproj", "{95153967-3505-481D-92B5-330C06607055}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,4 +1,4 @@
-using BikeSyste.Shared.Services;
+using BikeSystem.Shared.Services;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
