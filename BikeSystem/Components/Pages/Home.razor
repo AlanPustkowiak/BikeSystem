@@ -11,13 +11,5 @@ Welcome to your new app.
 
 
 @code{
-    protected override Task OnInitializedAsync()
-    {
-        if (!UserService.IsLogged().Result)
-        {
-            NavigationManager.NavigateTo("/");
-            return base.OnInitializedAsync();
-        }
-        return base.OnInitializedAsync();
-    }
+    
 }

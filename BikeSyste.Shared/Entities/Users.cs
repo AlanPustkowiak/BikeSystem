@@ -13,5 +13,26 @@ namespace BikeSystem.Shared.Entities
         public required string Password { get; set; }
         public required string Role { get; set; }
         public bool IsLogged { get; set; }
+
+        public static List<Users> GetDefaultUsers()
+        {
+            return new List<Users>
+            {
+                new Users
+                {
+                    Email = "test@test.pl",
+                    Password = "test",
+                    Role = "admin",
+                    IsLogged = false
+                },
+                new Users
+                {
+                    Email = "user@user.pl",
+                    Password = "user",
+                    Role = "user",
+                    IsLogged = false
+                }
+            };
+        }
     }
 }

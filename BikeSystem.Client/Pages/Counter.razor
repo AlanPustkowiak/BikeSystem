@@ -1,4 +1,6 @@
 ﻿@page "/counter"
+@inject IUserService UserService
+@inject NavigationManager NavigationManager
 @rendermode InteractiveAuto
 
 <PageTitle>Counter</PageTitle>
@@ -10,6 +12,17 @@
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 @code {
+    protected override Task OnInitializedAsync()
+    {
+        if (!UserService.IsLogged().Result)
+        {
+            NavigationManager.NavigateTo("/");
+            return Task.CompletedTask;
+        }
+        return Task.CompletedTask;
+    }
+
+
     private int currentCount = 0;
 
     private void IncrementCount()

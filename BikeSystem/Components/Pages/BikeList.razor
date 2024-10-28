@@ -1,5 +1,7 @@
 ﻿@page "/bikes"
 @inject IBikeService BikeService
+@inject IUserService UserService
+@inject NavigationManager NavigationManager
 @attribute [StreamRendering]
 
 <h3>BikeList</h3>
@@ -46,6 +48,10 @@ else
 
     protected override async Task OnInitializedAsync()
     {
+        if (!await UserService.IsLogged())
+        {
+            NavigationManager.NavigateTo("/");
+        }
         await Task.Delay(1000);
 
         bikes = await BikeService.GenerateBike();

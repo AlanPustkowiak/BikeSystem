@@ -1,6 +1,7 @@
 ﻿@layout LoginLayout
 @page "/"
 @inject IUserService UserService
+@inject NavigationManager NavigationManager
 
 <section class="vh-100 gradient-custom">
     <div class="container py-5 h-100">
@@ -47,14 +48,11 @@
     [SupplyParameterFromForm]
     UserLoginDto user { get; set; } = new UserLoginDto();
 
-    protected override async Task OnInitializedAsync()
+    private async Task Submit()
     {
-        await UserService.GenerateUser();
-    }
-
-    private void Submit()
-    {
-        Console.WriteLine("SUBMIT DZIAŁA !" + user.email + " " + user.password);
-        user = new UserLoginDto();
+        if (await UserService.CheckUser(user.email,user.password))
+        {
+            NavigationManager.NavigateTo("/home");
+        }
     }
 }
