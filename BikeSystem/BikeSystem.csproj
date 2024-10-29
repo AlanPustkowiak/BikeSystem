@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BikeSystem.Client\BikeSystem.Client.csproj" />
+    <PackageReference Include="Blazor.Bootstrap" Version="3.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.10" />
   </ItemGroup>
 

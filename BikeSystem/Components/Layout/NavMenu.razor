@@ -1,4 +1,7 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿@inject IUserService UserService
+
+
+<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="">BikeSystem</a>
     </div>
@@ -38,3 +41,8 @@
     </nav>
 </div>
 
+@code{
+    List<Users> users = null;
+
+    //TODO dodać metodę getallusers, pobrać listę i sprawdzić kto jest zalogowany oraz na tej podstawie pokazywać podstrony
+}

@@ -3,9 +3,13 @@
 @inject IUserService UserService
 @inject NavigationManager NavigationManager
 
-<section class="vh-100 gradient-custom">
-    <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
+<section class="vh-screen gradient-custom">
+    <div class="container py-5 h-screen">
+        <div class="row d-flex justify-content-center align-items-center h-screen">
+            @if (showLoginError)
+            {
+                <Alert Color="AlertColor.Danger"> Błędny login lub hasło! </Alert>
+            }
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                 <div class="card bg-primary text-white" style="border-radius: 1rem;">
                     <div class="card-body p-5 text-center">
@@ -44,15 +48,24 @@
 </section>
 
 
+
+
 @code {
     [SupplyParameterFromForm]
     UserLoginDto user { get; set; } = new UserLoginDto();
+    [Inject] protected ToastService toastService { get; set; } = default!;
+
+    private bool showLoginError = false;
 
     private async Task Submit()
     {
         if (await UserService.CheckUser(user.email,user.password))
         {
             NavigationManager.NavigateTo("/home");
+        }
+        else
+        {
+            showLoginError = true;
         }
     }
 }

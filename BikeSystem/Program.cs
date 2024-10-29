@@ -12,6 +12,8 @@ builder.Services.AddRazorComponents()
 builder.Services.AddScoped<IBikeService, BikeService>();
 builder.Services.AddScoped<IUserService, UserService>();
 
+builder.Services.AddBlazorBootstrap();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

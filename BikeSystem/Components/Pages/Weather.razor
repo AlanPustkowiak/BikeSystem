@@ -43,7 +43,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        if (!UserService.IsLogged().Result)
+        if (!await UserService.IsLogged())
         {
             NavigationManager.NavigateTo("/");
         }
