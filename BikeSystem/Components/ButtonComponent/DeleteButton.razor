@@ -1,0 +1,16 @@
+﻿@inject IBikeService BikeService
+@inject NavigationManager NavigationManager
+
+<Button class="btn btn-danger">Delete</Button>
+
+@code {
+
+    [Parameter]
+    public int Id { get; set; }
+
+    private async Task DeleteBike()
+    {
+        await BikeService.DeleteBike(Id);
+        NavigationManager.NavigateTo("/bikes");
+    }
+}
