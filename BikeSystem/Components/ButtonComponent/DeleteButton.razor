@@ -1,16 +1,17 @@
 ﻿@inject IBikeService BikeService
 @inject NavigationManager NavigationManager
+@rendermode InteractiveServer
 
-<Button class="btn btn-danger">Delete</Button>
+<Button @onclick="DeleteBike" class="btn btn-danger">Delete</Button>
 
 @code {
 
     [Parameter]
     public int Id { get; set; }
 
-    private async Task DeleteBike()
+    void DeleteBike()
     {
-        await BikeService.DeleteBike(Id);
-        NavigationManager.NavigateTo("/bikes");
+        //await BikeService.DeleteBike(Id);
+        NavigationManager.NavigateTo("/home");
     }
 }

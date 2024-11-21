@@ -2,7 +2,7 @@
 @inject IBikeService BikeService
 @inject IUserService UserService
 @inject NavigationManager NavigationManager
-@attribute [StreamRendering]
+@attribute [StreamRendering(true)]
 
 <h3>BikeList</h3>
 
@@ -36,7 +36,7 @@ else
                     <th>@bike.Description</th>
                     <th>@bike.Type</th>
                     <th>@bike.Price</th>
-                    <DeleteButton Id="@bike.Id" />
+                    <th><DeleteButton Id="@bike.Id" /></th>
                 </tr>
             }
         </tbody>
