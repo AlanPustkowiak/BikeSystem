@@ -36,11 +36,12 @@ else
                     <th>@bike.Description</th>
                     <th>@bike.Type</th>
                     <th>@bike.Price</th>
-                    <th><DeleteButton Id="@bike.Id" /></th>
+                    <th><DeleteButton Id="@bike.Id"/><EditButton Id="@bike.Id"/></th>
                 </tr>
             }
         </tbody>
     </table>
+    <AddButton />
 }
 
 @code {

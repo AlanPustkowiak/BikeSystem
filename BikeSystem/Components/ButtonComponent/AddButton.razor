@@ -1,0 +1,12 @@
+﻿@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
+
+<Button @onclick="AddBike" class="btn btn-primary">Add New</Button>
+
+@code {
+    void AddBike()
+    {
+        //await BikeService.DeleteBike(Id);
+        NavigationManager.NavigateTo("/home");
+    }
+}

@@ -1,0 +1,16 @@
+﻿@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
+
+<Button @onclick="EditBike" class="btn btn-info">Edit</Button>
+
+@code {
+
+    [Parameter]
+    public int Id { get; set; }
+
+    void EditBike()
+    {
+        //await BikeService.DeleteBike(Id);
+        NavigationManager.NavigateTo("/home");
+    }
+}
