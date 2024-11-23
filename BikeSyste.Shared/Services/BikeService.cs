@@ -9,23 +9,29 @@ namespace BikeSystem.Shared.Services
 {
     public class BikeService : IBikeService
     {
+        private static List<Bike> bikes;
         public BikeService()
         {
+            if (bikes == null)
+            {
+                bikes = Bike.GetDefaultBikes();
+            }
         }
 
-        public Task<List<Bike>> GenerateBike()
+        public Task<List<Bike>> GetAllBikes()
         {
-            List<Bike> bikes = new List<Bike>();
-            Bike bike = new()
-            {
-                Id = 1,
-                Name = "Rowex 2000",
-                Description = "Dobry rower górski",
-                Price = 20,
-                Type = "górski"
-            };
-            bikes.Add(bike);
             return Task.FromResult(bikes);
+        }
+
+        public Task<bool> DeleteBike(int id)
+        {
+            var bike = bikes.FirstOrDefault(x => x.Id == id);
+            if (bike != null)
+            {
+                bikes.Remove(bike);
+                return Task.FromResult(true);
+            }
+            throw new Exception("Bike not found");
         }
     }
 }

@@ -9,9 +9,14 @@
     [Parameter]
     public int Id { get; set; }
 
-    void DeleteBike()
+    public async Task DeleteBike()
     {
-        //await BikeService.DeleteBike(Id);
-        NavigationManager.NavigateTo("/home");
+        await BikeService.DeleteBike(Id);
+        RedirectToBikeList();
+    }
+
+    void RedirectToBikeList()
+    {
+        NavigationManager.NavigateTo("/bikes");
     }
 }

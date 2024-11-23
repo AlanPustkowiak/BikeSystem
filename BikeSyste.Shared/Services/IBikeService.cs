@@ -9,6 +9,7 @@ namespace BikeSystem.Shared.Services
 {
     public interface IBikeService
     {
-        Task<List<Bike>> GenerateBike();
+        Task<List<Bike>> GetAllBikes();
+        Task<bool> DeleteBike(int id);
     }
 }

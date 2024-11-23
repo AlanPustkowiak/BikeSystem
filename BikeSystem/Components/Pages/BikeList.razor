@@ -55,6 +55,6 @@ else
         }
         await Task.Delay(1000);
 
-        bikes = await BikeService.GenerateBike();
+        bikes = BikeService.GetAllBikes().Result;
     }
 }
