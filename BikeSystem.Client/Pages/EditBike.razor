@@ -1,0 +1,12 @@
+﻿@page "/editbike/{id:int}"
+@inject IBikeService BikeService
+@rendermode InteractiveAuto
+
+
+<!-- TODO form w którym będą zaciągać się dane i zaistnieje możliwość ich edycji-->
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    [SupplyParameterFromForm]
+    Bike bike { get; set; } = new Bike { Name = string.Empty };
+}
