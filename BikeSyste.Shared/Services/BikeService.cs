@@ -33,5 +33,15 @@ namespace BikeSystem.Shared.Services
             }
             throw new Exception("Bike not found");
         }
+
+        public Task<Bike> GetBikeById(int id)
+        {
+            var bike = bikes.FirstOrDefault(x => x.Id == id);
+            if (bike != null)
+            {
+                return Task.FromResult(bike);
+            }
+            throw new Exception("Bike not found");
+        }
     }
 }
