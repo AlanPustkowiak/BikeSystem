@@ -25,10 +25,10 @@ namespace BikeSystem.Shared.Services
 
         public Task<bool> DeleteBike(int id)
         {
-            var bike = bikes.FirstOrDefault(x => x.Id == id);
-            if (bike != null)
+            var dbBike = bikes.FirstOrDefault(x => x.Id == id);
+            if (dbBike != null)
             {
-                bikes.Remove(bike);
+                bikes.Remove(dbBike);
                 return Task.FromResult(true);
             }
             throw new Exception("Bike not found");
@@ -36,9 +36,23 @@ namespace BikeSystem.Shared.Services
 
         public Task<Bike> GetBikeById(int id)
         {
-            var bike = bikes.FirstOrDefault(x => x.Id == id);
-            if (bike != null)
+            var dbBike = bikes.FirstOrDefault(x => x.Id == id);
+            if (dbBike != null)
             {
+                return Task.FromResult(dbBike);
+            }
+            throw new Exception("Bike not found");
+        }
+
+        public Task<Bike> UpdateBike(int id, Bike bike)
+        {
+            var dbBike = bikes.FirstOrDefault(x => x.Id == id);
+            if (dbBike != null)
+            {
+                dbBike.Name = bike.Name;
+                dbBike.Description = bike.Description;
+                dbBike.Price = bike.Price;
+                dbBike.Type = bike.Type;
                 return Task.FromResult(bike);
             }
             throw new Exception("Bike not found");

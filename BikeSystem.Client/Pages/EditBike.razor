@@ -1,10 +1,10 @@
 ﻿@page "/editbike/{id:int}"
 @inject IBikeService BikeService
+@inject NavigationManager NavigationManager
 @rendermode InteractiveAuto
-
 <h3>EditBike</h3>
 
-<form>
+<EditForm Model="bike" OnSubmit="HandleSubmit" FormName="editBike">
     <label for="name">Nazwa</label>
     <input type="text" id="name" name="name" @bind-value="@bike.Name" class="form-control w-25"/>
     <label for="opis">Opis</label>
@@ -12,9 +12,9 @@
     <label for="typ">Typ</label>
     <input type="text" id="typ" name="typ" @bind-value="@bike.Type" class="form-control w-25" />
     <button type="submit" class="btn btn-primary mt-2">Zatwierdź</button>
-</form>
+</EditForm>
 
-<!-- TODO form w którym będą zaciągać się dane i zaistnieje możliwość ich edycji-->
+
 @code {
     [Parameter]
     public int Id { get; set; }
@@ -23,6 +23,12 @@
 
     protected override async Task OnInitializedAsync()
     {
-        bike = BikeService.GetBikeById(Id).Result;
+        bike = await BikeService.GetBikeById(Id);
+    }
+
+    private async Task HandleSubmit()
+    {
+        await BikeService.UpdateBike(Id,bike);
+        NavigationManager.NavigateTo("/bikes");
     }
 }

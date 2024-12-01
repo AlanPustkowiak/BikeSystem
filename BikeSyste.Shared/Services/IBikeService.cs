@@ -12,5 +12,6 @@ namespace BikeSystem.Shared.Services
         Task<List<Bike>> GetAllBikes();
         Task<bool> DeleteBike(int id);
         Task<Bike> GetBikeById(int id);
+        Task<Bike> UpdateBike(int id,Bike bike);
     }
 }
