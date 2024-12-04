@@ -46,7 +46,6 @@
 @code {
     [SupplyParameterFromForm]
     UserLoginDto user { get; set; } = new UserLoginDto();
-    [Inject] protected ToastService toastService { get; set; } = default!;
 
     private bool showLoginError = false;
 

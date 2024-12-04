@@ -1,9 +1,27 @@
 ﻿@page "/addbike"
+@inject IBikeService BikeService
+@inject NavigationManager NavigationManager
+@rendermode InteractiveAuto
 
 <h3>Dodaj rower</h3>
 
-<!--TODO add bike page and service-->
+<EditForm Model="bike" OnSubmit="SaveBike" FormName="addBikeForm">
+    <label>Marka</label>
+    <InputText type="text" class="form-control w-25" @bind-Value="bike.Name" />
+    <label>Opis problemu</label>
+    <InputText type="text" class="form-control w-25" @bind-Value="bike.Description" />
+    <label>Typ roweru</label>
+    <InputText type="text" class="form-control w-25" @bind-Value="bike.Type" />
+    <button type="submit" class="btn btn-primary mt-2">Zapisz</button>
+</EditForm>
 
 @code {
+    [SupplyParameterFromForm]
+    Bike bike { get; set; } = new Bike { Name = string.Empty };
 
+    async Task SaveBike()
+    {
+        await BikeService.AddBike(bike);
+        NavigationManager.NavigateTo("/bikes");
+    }
 }

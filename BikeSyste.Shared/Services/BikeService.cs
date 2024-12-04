@@ -57,5 +57,12 @@ namespace BikeSystem.Shared.Services
             }
             throw new Exception("Bike not found");
         }
+
+        public Task<Bike> AddBike(Bike bike)
+        {
+            bike.Id = bikes.Max(x => x.Id) + 1;
+            bikes.Add(bike);
+            return Task.FromResult(bike);
+        }
     }
 }
