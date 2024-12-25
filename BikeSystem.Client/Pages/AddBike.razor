@@ -9,7 +9,7 @@
     <label>Marka</label>
     <InputText type="text" class="form-control w-25" @bind-Value="bike.Name" />
     <label>Opis problemu</label>
-    <InputText type="text" class="form-control w-25" @bind-Value="bike.Description" />
+    <InputTextArea id="opis" name="opis" @bind-Value="@bike.Description" class="form-control w-25" rows="4"></InputTextArea>
     <label>Typ roweru</label>
     <InputText type="text" class="form-control w-25" @bind-Value="bike.Type" />
     <button type="submit" class="btn btn-primary mt-2">Zapisz</button>
