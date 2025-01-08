@@ -11,6 +11,7 @@ builder.Services.AddRazorComponents()
 
 builder.Services.AddScoped<IBikeService, BikeService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IBikeRepairService, BikeRepairService>();
 
 builder.Services.AddBlazorBootstrap();
 

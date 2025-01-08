@@ -1,7 +1,58 @@
 ﻿@page "/UserBikeStatusList"
+@inject IBikeRepairService BikeRepairService
+@inject IBikeService BikeService
+@attribute [StreamRendering]
 
 <h3>userBikeStatusList</h3>
+@if (bikeRepairs == null)
+{
+    <span>Loading...</span>
+}
+else if (bikeRepairs.Count() == 0)
+{
+    <span>Brak zleceń</span>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Nazwa rowera</th>
+                <th scope="col">Opis</th>
+                <th scope="col">Status</th>
+                <th scope="col">Koszt</th>
+                <th scope="col">Data rozpoczęcia</th>
+                <th scope="col">Akcja</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var bikeRepair in bikeRepairs)
+            {
+                <tr>
+                    <th>@GetBikeName(bikeRepair.BikeId)</th>
+                    <th>@bikeRepair.Description</th>
+                    <th>@bikeRepair.Status</th>
+                    <th>@bikeRepair.Price</th>
+                    <th>@bikeRepair.Date</th>
+                    <th>TODO</th>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
 
 @code {
+    List<BikeRepair>? bikeRepairs = null;
 
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(1000);
+        bikeRepairs = BikeRepairService.GetAllBikeRepairs().Result;
+    }
+
+    public string GetBikeName(int bikeId)
+    {
+        var bike = BikeService.GetBikeById(bikeId).Result;
+        return bike.Name;
+    }
 }
