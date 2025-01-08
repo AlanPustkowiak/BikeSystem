@@ -26,7 +26,7 @@ namespace BikeSystem.Shared.Entities
                     Description = "Naprawa roweru",
                     Date = DateTime.Now,
                     Price = 20,
-                    Status = "Zakończono"
+                    Status = "W trakcie"
                 },
                 new BikeRepair
                 {
@@ -35,7 +35,7 @@ namespace BikeSystem.Shared.Entities
                     Description = "Naprawa roweru",
                     Date = DateTime.Now,
                     Price = 15,
-                    Status = "Zakończono"
+                    Status = "W trakcie"
                 },
                 new BikeRepair
                 {
