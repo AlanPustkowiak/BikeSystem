@@ -1,0 +1,14 @@
+@inject NavigationManager NavigationManager
+
+<Button @onclick="ChangeBikeStatus" class="btn btn-primary">Change Status</Button>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+
+    void ChangeBikeStatus()
+    {
+        NavigationManager.NavigateTo($"/ChangeBikeStatus/{Id}");
+    }
+}

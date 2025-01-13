@@ -30,12 +30,12 @@ else
             @foreach (var bike in bikes)
             {
                 <tr>
-                    <th scope="row">@bike.Id</th>
-                    <th>@bike.Name</th>
-                    <th>@bike.Description</th>
-                    <th>@bike.Type</th>
-                    <th>@bike.Price</th>
-                    <th><DeleteButton Id="@bike.Id"/><EditButton Id="@bike.Id"/></th>
+                    <td scope="row">@bike.Id.</td>
+                    <td>@bike.Name</td>
+                    <td>@bike.Description</td>
+                    <td>@bike.Type</td>
+                    <td>@bike.Price</td>
+                    <td><DeleteButton Id="@bike.Id" /><EditButton Id="@bike.Id" /></td>
                 </tr>
             }
         </tbody>

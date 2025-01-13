@@ -28,13 +28,13 @@ else
         <tbody>
             @foreach (var bikeRepair in bikeRepairs)
             {
-                <tr>
-                    <th>@GetBikeName(bikeRepair.BikeId)</th>
-                    <th>@bikeRepair.Description</th>
-                    <th>@bikeRepair.Status</th>
-                    <th>@bikeRepair.Price</th>
-                    <th>@bikeRepair.Date</th>
-                    <th>TODO</th>
+                <tr class="">
+                    <td>@GetBikeName(bikeRepair.BikeId)</td>
+                    <td>@bikeRepair.Description</td>
+                    <td>@bikeRepair.Status</td>
+                    <td>@bikeRepair.Price</td>
+                    <td>@bikeRepair.Date</td>
+                    <td><ChangeBikeStatusButton id="@bikeRepair.Id" /></td>
                 </tr>
             }
         </tbody>

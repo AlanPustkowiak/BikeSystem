@@ -1,0 +1,43 @@
+﻿@page "/ChangeBikeStatus/{int:id}"
+@inject IBikeRepairService BikeRepairService
+@inject NavigationManager NavigationManager
+
+
+<h3>ChangeBikeStatus</h3>
+
+<h3>Informacje o zleceniu:</h3>
+<p>Rower: </p>
+<p>Opis: </p>
+<p>Status: </p>
+
+<h3>Zmień status:</h3>
+<EditForm Model="@bikeRepair" OnValidSubmit="@ChangeStatus">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="form-group">
+        <InputSelect class="form-control" @bind-Value="bikeRepair.Status">
+            <option value="Zgłoszono">Zgłoszono</option>
+            <option value="W trakcie">W trakcie</option>
+            <option value="Zakończono">Zakończono</option>
+        </InputSelect>
+    </div>
+    <button type="submit" class="btn btn-primary">Akceptuj</button>
+</EditForm>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private BikeRepair bikeRepair;
+
+    protected override async Task OnInitializedAsync()
+    {
+        bikeRepair = await BikeRepairService.GetBikeRepairById(Id);
+    }
+
+    public void ChangeStatus()
+    {
+        BikeRepairService.UpdateBikeRepair(Id, bikeRepair);
+        NavigationManager.NavigateTo("/UserBikeStatusList");
+    }
+}
