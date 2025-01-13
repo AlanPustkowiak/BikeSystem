@@ -1,43 +1,53 @@
-﻿@page "/ChangeBikeStatus/{int:id}"
+﻿@page "/ChangeBikeStatus/{id:int}"
 @inject IBikeRepairService BikeRepairService
+@inject IBikeService BikeService
 @inject NavigationManager NavigationManager
+@rendermode InteractiveAuto
 
-
-<h3>ChangeBikeStatus</h3>
-
-<h3>Informacje o zleceniu:</h3>
-<p>Rower: </p>
-<p>Opis: </p>
-<p>Status: </p>
+<h4>Informacje o zleceniu:</h4>
+<p>Rower: @GetBikeName(bikeRepair.BikeId)</p>
+<p>Opis: @bikeRepair.Description</p>
+<p>Aktualny Status: @oldStatus</p>
 
 <h3>Zmień status:</h3>
-<EditForm Model="@bikeRepair" OnValidSubmit="@ChangeStatus">
+<EditForm Model="@bikeRepair" OnValidSubmit="@ChangeStatus" FormName="bikeRepairStatusEdit">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <div class="form-group">
-        <InputSelect class="form-control" @bind-Value="bikeRepair.Status">
-            <option value="Zgłoszono">Zgłoszono</option>
+        <InputSelect class="form-select w-25" @bind-Value="bikeRepair.Status">
+            <option value="Oczekuje">Oczekuje</option>
             <option value="W trakcie">W trakcie</option>
             <option value="Zakończono">Zakończono</option>
         </InputSelect>
     </div>
-    <button type="submit" class="btn btn-primary">Akceptuj</button>
+    <button type="submit" class="btn btn-primary mt-2">Akceptuj</button>
 </EditForm>
 
 @code {
     [Parameter]
     public int Id { get; set; }
 
-    private BikeRepair bikeRepair;
+    [SupplyParameterFromForm]
+    private BikeRepair bikeRepair { get; set; }
+
+    private string oldStatus = string.Empty;
+
 
     protected override async Task OnInitializedAsync()
     {
         bikeRepair = await BikeRepairService.GetBikeRepairById(Id);
+        oldStatus = bikeRepair.Status;
     }
 
-    public void ChangeStatus()
+    public async Task ChangeStatus()
     {
-        BikeRepairService.UpdateBikeRepair(Id, bikeRepair);
+        await BikeRepairService.UpdateBikeRepair(Id, bikeRepair);
         NavigationManager.NavigateTo("/UserBikeStatusList");
+    }
+
+    public string GetBikeName(int bikeId)
+    {
+        var bike = BikeService.GetBikeById(bikeId).Result;
+        return bike.Name;
     }
 }
