@@ -34,10 +34,16 @@ namespace BikeSystem.Shared.Services
             }
         }
 
+        public Task<List<Users>?> GetAllUsers()
+        {
+            return Task.FromResult(users);
+        }
+
         public Task<bool> IsLogged()
         {
             bool result = users.Any(x => x.IsLogged == true);
             return Task.FromResult(result);
         }
+
     }
 }

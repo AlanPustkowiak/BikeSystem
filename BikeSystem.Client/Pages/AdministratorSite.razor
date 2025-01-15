@@ -1,0 +1,38 @@
+﻿@page "/administrator"
+@inject IUserService UserService
+@rendermode InteractiveAuto
+
+<h3>Zarządzanie użytkownikami</h3>
+<p>przycisk do dodawania nowych</p>
+<p>Wszyscy użytkownicy:</p>
+@if (users == null)
+{
+    <p>Brak użytkowników!</p>
+}
+else
+{
+    <div class="container">
+        @foreach (var user in users)
+        {
+            <Card>
+                <CardHeader>
+                    <CardTitle>@user.Role</CardTitle>
+                </CardHeader>
+                <CardBody>
+                    <CardText>
+                        <p>Email: @user.Email</p>
+                        <p>Przcisk do usuwania/edycji</p>
+                    </CardText>
+                </CardBody>
+            </Card>
+        }
+    </div>
+}
+
+@code {
+    private List<Users>? users = new List<Users>();
+    protected override async Task OnInitializedAsync()
+    {
+        users = await UserService.GetAllUsers();
+    }
+}
