@@ -12,5 +12,6 @@ namespace BikeSystem.Shared.Services
         Task<bool> IsLogged();
         Task<bool> CheckUser(string email, string password);
         Task<List<Users>?> GetAllUsers();
+        Task<bool> DeleteUser(string email);
     }
 }

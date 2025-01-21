@@ -34,6 +34,20 @@ namespace BikeSystem.Shared.Services
             }
         }
 
+        public Task<bool> DeleteUser(string email)
+        {
+            var user = users.FirstOrDefault(x => x.Email == email);
+            if (user != null)
+            {
+                users.Remove(user);
+                return Task.FromResult(true);
+            }
+            else
+            {
+                return Task.FromResult(false);
+            }
+        }
+
         public Task<List<Users>?> GetAllUsers()
         {
             return Task.FromResult(users);

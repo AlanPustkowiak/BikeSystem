@@ -1,0 +1,14 @@
+﻿@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
+
+<Button @onclick="EditUser" class="btn btn-info ms-1">Edit</Button>
+
+@code {
+    [Parameter]
+    public string email { get; set; }
+    
+    public void EditUser()
+    {
+        NavigationManager.NavigateTo($"/edituser/{email}");
+    }
+}

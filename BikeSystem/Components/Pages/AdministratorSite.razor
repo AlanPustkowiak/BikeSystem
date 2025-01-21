@@ -1,6 +1,7 @@
-﻿@page "/administrator"
+﻿@page "/administration"
 @inject IUserService UserService
 @rendermode InteractiveAuto
+@attribute [StreamRendering(true)]
 
 <h3>Zarządzanie użytkownikami</h3>
 <p>przycisk do dodawania nowych</p>
@@ -11,9 +12,10 @@
 }
 else
 {
-    <div class="container">
+    <div class="container d-flex flex-row">
         @foreach (var user in users)
         {
+            <div class="m-2">
             <Card>
                 <CardHeader>
                     <CardTitle>@user.Role</CardTitle>
@@ -21,10 +23,11 @@ else
                 <CardBody>
                     <CardText>
                         <p>Email: @user.Email</p>
-                        <p>Przcisk do usuwania/edycji</p>
+                        <p><DeleteUserButton email="@user.Email"></DeleteUserButton></p>
                     </CardText>
                 </CardBody>
             </Card>
+            </div>
         }
     </div>
 }

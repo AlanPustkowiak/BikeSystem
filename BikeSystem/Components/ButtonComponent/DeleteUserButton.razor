@@ -1,0 +1,21 @@
+﻿@inject IUserService UserService
+@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
+
+<Button @onclick="DeleteUser" class="btn btn-danger me-1">Delete</Button>
+
+@code {
+    [Parameter]
+    public string email { get; set; }
+
+    public async Task DeleteUser()
+    {
+        await UserService.DeleteUser(email);
+        RedirectToUserList();
+    }
+
+    void RedirectToUserList()
+    {
+        NavigationManager.NavigateTo("/administration");
+    }
+}
