@@ -1,0 +1,31 @@
+﻿@page "/adduser"
+@inject NavigationManager NavigationManager
+@inject IUserService UserService
+@rendermode InteractiveAuto
+
+<h3>AddUser</h3>
+<EditForm Model="user" OnSubmit="SaveUser" FormName="addUserForm">
+    <label>Email</label>
+    <InputText type="text" class="form-control w-25" @bind-Value="user.email" />
+    <label>Password</label>
+    <InputText type="text" class="form-control w-25" @bind-Value="user.password" />
+    <label>Role</label>
+    <InputSelect class="form-control w-25" @bind-Value="user.role">
+        <option value="User">User</option>
+        <option value="Admin">Admin</option>
+        <option value="Service">Service</option>
+        <option value="Owner">Owner</option>
+    </InputSelect>
+    <button type="submit" class="btn btn-primary mt-2">Save</button>
+</EditForm>
+
+@code {
+    [SupplyParameterFromForm]
+    UserToAddDTO user { get; set; } = new UserToAddDTO();
+
+    async Task SaveUser()
+    {
+        await UserService.AddUser(user);
+        NavigationManager.NavigateTo("/administrator");
+    }
+}

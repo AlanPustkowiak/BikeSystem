@@ -20,6 +20,26 @@ namespace BikeSystem.Shared.Services
             }
         }
 
+        public Task<UserToAddDTO> AddUser(UserToAddDTO userToAddDTO)
+        {
+            var user = users.FirstOrDefault(x => x.Email == userToAddDTO.email);
+            if (user != null)
+            {
+                throw new DuplicateNameException("User already exists");
+            }
+            else
+            {
+                var newUser = new Users
+                {
+                    Email = userToAddDTO.email,
+                    Password = userToAddDTO.password,
+                    Role = userToAddDTO.role
+                };
+                users.Add(newUser);
+                return Task.FromResult(userToAddDTO);
+            }
+        }
+
         public Task<bool> CheckUser(string email, string password)
         {
             var account = users.FirstOrDefault(x => x.Email == email && x.Password == password);
