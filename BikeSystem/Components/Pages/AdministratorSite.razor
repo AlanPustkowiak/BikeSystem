@@ -1,10 +1,9 @@
-﻿@page "/administration"
+﻿@page "/administrator"
 @inject IUserService UserService
-@rendermode InteractiveAuto
 @attribute [StreamRendering(true)]
 
 <h3>Zarządzanie użytkownikami</h3>
-<p>przycisk do dodawania nowych</p>
+<p><AddUserButton></AddUserButton></p>
 <p>Wszyscy użytkownicy:</p>
 @if (users == null)
 {
@@ -23,7 +22,7 @@ else
                 <CardBody>
                     <CardText>
                         <p>Email: @user.Email</p>
-                        <p><DeleteUserButton email="@user.Email"></DeleteUserButton></p>
+                        <p><DeleteUserButton email="@user.Email"></DeleteUserButton><EditUserDataButton></EditUserDataButton></p>
                     </CardText>
                 </CardBody>
             </Card>

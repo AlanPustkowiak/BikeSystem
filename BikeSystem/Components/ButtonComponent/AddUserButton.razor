@@ -1,0 +1,11 @@
+﻿@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
+
+<Button @onclick="AddUser" class="btn btn-primary me-1">Add new</Button>
+
+@code {
+    public void AddUser()
+    {
+        NavigationManager.NavigateTo("/adduser");
+    }
+}
