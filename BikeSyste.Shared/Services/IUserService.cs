@@ -14,5 +14,7 @@ namespace BikeSystem.Shared.Services
         Task<List<Users>?> GetAllUsers();
         Task<bool> DeleteUser(string email);
         Task<UserToAddDTO> AddUser(UserToAddDTO userToAddDTO);
+        Task<UserToAddDTO> GetUserByEmail(string email);
+        Task<UserToAddDTO> UpdateUser(UserToAddDTO userToAddDTO);
     }
 }

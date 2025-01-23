@@ -1,17 +1,17 @@
-﻿@page "/adduser"
+﻿@page "/edituser/{email}"
 @inject NavigationManager NavigationManager
 @inject IUserService UserService
 @rendermode InteractiveAuto
 
-<h3>AddUser</h3>
-<EditForm Model="user" OnSubmit="SaveUser" FormName="addUserForm">
+<h3>EditUser</h3>
+
+<EditForm Model="user" OnSubmit="SaveUser" FormName="EditUser">
     <label>Email</label>
     <InputText type="text" class="form-control w-25" @bind-Value="user.email" />
     <label>Password</label>
     <InputText type="text" class="form-control w-25" @bind-Value="user.password" />
     <label>Role</label>
     <InputSelect class="form-control w-25" @bind-Value="user.role">
-        <option value="">Select role</option>
         <option value="User">User</option>
         <option value="Admin">Admin</option>
         <option value="Service">Service</option>
@@ -21,12 +21,18 @@
 </EditForm>
 
 @code {
+    [Parameter]
+    public string email { get; set; }
     [SupplyParameterFromForm]
     UserToAddDTO user { get; set; } = new UserToAddDTO();
-
+    protected override async Task OnInitializedAsync()
+    {
+        user = await UserService.GetUserByEmail(email);
+    }
     async Task SaveUser()
     {
-        await UserService.AddUser(user);
+        await UserService.UpdateUser(user);
         NavigationManager.NavigateTo("/administrator");
     }
+
 }

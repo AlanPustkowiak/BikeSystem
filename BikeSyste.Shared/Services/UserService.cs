@@ -73,11 +73,45 @@ namespace BikeSystem.Shared.Services
             return Task.FromResult(users);
         }
 
+        public Task<UserToAddDTO> GetUserByEmail(string email)
+        {
+            var user = users.FirstOrDefault(x => x.Email == email);
+            if (user != null)
+            {
+                var userToAddDTO = new UserToAddDTO
+                {
+                    email = user.Email,
+                    password = user.Password,
+                    role = user.Role
+                };
+                return Task.FromResult(userToAddDTO);
+            }
+            else
+            {
+                throw new DataException("User not found");
+            }
+        }
+
         public Task<bool> IsLogged()
         {
             bool result = users.Any(x => x.IsLogged == true);
             return Task.FromResult(result);
         }
 
+        public Task<UserToAddDTO> UpdateUser(UserToAddDTO userToAddDTO)
+        {
+            var user = users.FirstOrDefault(x => x.Email == userToAddDTO.email);
+            if (user != null)
+            {
+                user.Email = userToAddDTO.email;
+                user.Password = userToAddDTO.password;
+                user.Role = userToAddDTO.role;
+                return Task.FromResult(userToAddDTO);
+            }
+            else
+            {
+                throw new DataException("User not found");
+            }
+        }
     }
 }

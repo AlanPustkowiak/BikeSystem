@@ -55,5 +55,11 @@ namespace BikeSystem.Shared.Services
             throw new Exception("BikeRepair not found");
 
         }
+
+        public Task<List<double?>> GetRepairCountByStatus()
+        {
+            var repairCountByStatus = bikeRepairs.GroupBy(x => x.Status).Select(x => (double?)x.Count()).ToList();
+            return Task.FromResult(repairCountByStatus);
+        }
     }
 }
