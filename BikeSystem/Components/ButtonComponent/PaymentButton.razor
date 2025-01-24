@@ -1,0 +1,11 @@
+﻿@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
+
+<Button @onclick="Payment" class="btn btn-primary">Payment</Button>
+
+@code {
+    public void Payment()
+    {
+        NavigationManager.NavigateTo("https://www.revolut.com");
+    }
+}

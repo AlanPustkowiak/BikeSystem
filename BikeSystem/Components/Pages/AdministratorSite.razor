@@ -5,7 +5,7 @@
 @if (user.Role == "Admin")
 {
     <h3>Zarządzanie użytkownikami</h3>
-    <p><AddUserButton></AddUserButton></p>
+    <p><AddUserButton></AddUserButton><ConnectSystemButton></ConnectSystemButton></p>
     <p>Wszyscy użytkownicy:</p>
     @if (users == null)
     {

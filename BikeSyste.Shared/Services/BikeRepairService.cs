@@ -73,7 +73,7 @@ namespace BikeSystem.Shared.Services
             bikeRepair1.Description = bikeRepair.Description;
             bikeRepair1.Date = DateTime.Now;
             bikeRepair1.Price = 0;
-            bikeRepair1.Status = "Oczekuje";
+            bikeRepair1.Status = "Nowe";
             bikeRepairs.Add(bikeRepair1);
             return Task.FromResult(bikeRepair1);
         }

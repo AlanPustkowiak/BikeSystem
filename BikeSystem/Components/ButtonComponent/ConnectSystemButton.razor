@@ -1,0 +1,12 @@
+﻿@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
+
+
+<Button class="btn btn-primary" @onclick="Connect">ConnectSystem</Button>
+
+@code {
+    public void Connect()
+    {
+        NavigationManager.NavigateTo("https://connectsystem.pl/");
+    }
+}

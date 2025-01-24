@@ -15,9 +15,11 @@
     <ValidationSummary />
     <div class="form-group">
         <InputSelect class="form-select w-25" @bind-Value="bikeRepair.Status">
-            <option value="Oczekuje">Oczekuje</option>
+            <option value="Nowe">Nowe</option>
             <option value="W trakcie">W trakcie</option>
             <option value="Zakończono">Zakończono</option>
+            <option value="Oczekuje na części">Oczekuje na części</option>
+            <option value="Opóźnienie">Opóźnienie</option>
         </InputSelect>
         <h3>Koszt usługi:</h3>
         <InputNumber class="form-control w-25" @bind-Value="bikeRepair.Price" placeholder="Cena" />

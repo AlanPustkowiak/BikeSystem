@@ -42,6 +42,7 @@ namespace BikeSystem.Shared.Services
 
         public Task<bool> CheckUser(string email, string password)
         {
+            Logout();
             var account = users.FirstOrDefault(x => x.Email == email && x.Password == password);
             if (account != null)
             {
@@ -119,6 +120,14 @@ namespace BikeSystem.Shared.Services
         {
             var result = users.FirstOrDefault(x => x.IsLogged == true);
             return Task.FromResult(result);
+        }
+
+        public void Logout()
+        {
+            foreach (var user in users)
+            {
+                user.IsLogged = false;
+            }
         }
 
         public Task<UserToAddDTO> UpdateUser(UserToAddDTO userToAddDTO)

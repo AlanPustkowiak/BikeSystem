@@ -23,10 +23,7 @@ else
                 <th scope="col">Status</th>
                 <th scope="col">Koszt</th>
                 <th scope="col">Data rozpoczęcia</th>
-                @if (user.Role != "User")
-                {
-                    <th scope="col">Akcja</th>
-                }
+                <th scope="col">Akcja</th>
             </tr>
         </thead>
         <tbody>
@@ -41,6 +38,10 @@ else
                     @if (user.Role != "User")
                     {
                         <td><ChangeBikeStatusButton id="@bikeRepair.Id" /></td>
+                    }
+                    else if (user.Role == "User" && bikeRepair.Price != 0)
+                    {
+                        <td><PaymentButton></PaymentButton></td>
                     }
                 </tr>
             }
