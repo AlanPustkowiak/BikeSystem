@@ -2,6 +2,7 @@
 @inject IUserService UserService
 @attribute [StreamRendering(true)]
 
+
 <h3>Zarządzanie użytkownikami</h3>
 <p><AddUserButton></AddUserButton></p>
 <p>Wszyscy użytkownicy:</p>
@@ -15,17 +16,17 @@ else
         @foreach (var user in users)
         {
             <div class="m-2">
-            <Card>
-                <CardHeader>
-                    <CardTitle>@user.Role</CardTitle>
-                </CardHeader>
-                <CardBody>
-                    <CardText>
-                        <p>Email: @user.Email</p>
-                        <p><DeleteUserButton email="@user.Email"></DeleteUserButton><EditUserDataButton email="@user.Email"></EditUserDataButton></p>
-                    </CardText>
-                </CardBody>
-            </Card>
+                <Card>
+                    <CardHeader>
+                        <CardTitle>@user.Role</CardTitle>
+                    </CardHeader>
+                    <CardBody>
+                        <CardText>
+                            <p>Email: @user.Email</p>
+                            <p><DeleteUserButton email="@user.Email"></DeleteUserButton><EditUserDataButton email="@user.Email"></EditUserDataButton></p>
+                        </CardText>
+                    </CardBody>
+                </Card>
             </div>
         }
     </div>
@@ -33,8 +34,11 @@ else
 
 @code {
     private List<Users>? users = new List<Users>();
+    //private Users? user;
+
     protected override async Task OnInitializedAsync()
     {
         users = await UserService.GetAllUsers();
+        //user = await UserService.IsLogged();
     }
 }

@@ -43,10 +43,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        if (!await UserService.IsLogged())
-        {
-            NavigationManager.NavigateTo("/");
-        }
+        
         // Simulate asynchronous loading to demonstrate streaming rendering
         await Task.Delay(500);
 

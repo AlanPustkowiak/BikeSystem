@@ -92,9 +92,9 @@ namespace BikeSystem.Shared.Services
             }
         }
 
-        public Task<bool> IsLogged()
+        public Task<Users?> IsLogged()
         {
-            bool result = users.Any(x => x.IsLogged == true);
+            var result = users.FirstOrDefault(x => x.IsLogged == true);
             return Task.FromResult(result);
         }
 

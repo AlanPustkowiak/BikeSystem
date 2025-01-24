@@ -9,7 +9,7 @@ namespace BikeSystem.Shared.Services
 {
     public interface IUserService
     {
-        Task<bool> IsLogged();
+        Task<Users?> IsLogged();
         Task<bool> CheckUser(string email, string password);
         Task<List<Users>?> GetAllUsers();
         Task<bool> DeleteUser(string email);
