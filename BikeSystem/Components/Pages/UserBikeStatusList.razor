@@ -1,6 +1,7 @@
 ﻿@page "/UserBikeStatusList"
 @inject IBikeRepairService BikeRepairService
 @inject IBikeService BikeService
+@inject IUserService UserService
 @attribute [StreamRendering]
 
 <h3>userBikeStatusList</h3>
@@ -22,7 +23,10 @@ else
                 <th scope="col">Status</th>
                 <th scope="col">Koszt</th>
                 <th scope="col">Data rozpoczęcia</th>
-                <th scope="col">Akcja</th>
+                @if (user.Role != "User")
+                {
+                    <th scope="col">Akcja</th>
+                }
             </tr>
         </thead>
         <tbody>
@@ -34,7 +38,10 @@ else
                     <td>@bikeRepair.Status</td>
                     <td>@bikeRepair.Price</td>
                     <td>@bikeRepair.Date</td>
-                    <td><ChangeBikeStatusButton id="@bikeRepair.Id" /></td>
+                    @if (user.Role != "User")
+                    {
+                        <td><ChangeBikeStatusButton id="@bikeRepair.Id" /></td>
+                    }
                 </tr>
             }
         </tbody>
@@ -42,10 +49,12 @@ else
 }
 
 @code {
+    private Users? user;
     List<BikeRepair>? bikeRepairs = null;
 
     protected override async Task OnInitializedAsync()
     {
+        user = await UserService.IsLogged();
         await Task.Delay(1000);
         bikeRepairs = BikeRepairService.GetAllBikeRepairs().Result;
     }

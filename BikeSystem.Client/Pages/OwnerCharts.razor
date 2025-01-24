@@ -1,13 +1,24 @@
 ﻿@page "/ownercharts"
 @inject IBikeRepairService BikeRepairService
+@inject IUserService UserService
 @rendermode InteractiveAuto
 
-<h3>OwnerCharts</h3>
-<div class="d-flex flex-row justify-content-between">
-    <BarChart @ref="barChart" Width="700" Height="500" />
-    <PieChart @ref="pieChart" Width="500" />
-</div>
+@if (user.Role == "Owner")
+{
+    <h3>OwnerCharts</h3>
+    <div class="d-flex flex-row justify-content-between">
+        <BarChart @ref="barChart" Width="700" Height="500" />
+        <PieChart @ref="pieChart" Width="500" />
+    </div>
+}
+else
+{
+    <div class="d-flex justify-content-center aling-items-center">
+        <p>Brak dostępu!</p>
+    </div>
+}
 @code {
+    private Users? user;
     private BarChart barChart = default!;
     private BarChartOptions barChartOptions = default!;
     private ChartData chartData = default!;
@@ -26,6 +37,7 @@
 
     protected override void OnInitialized()
     {
+        user = UserService.IsLogged().Result;
         backgroundColors = ColorUtility.CategoricalTwelveColors;
         chartData1 = new ChartData { Labels = GetDefaultDataLabels(4), Datasets = GetDefaultDataSets(1) };
 
