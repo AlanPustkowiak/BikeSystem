@@ -68,6 +68,15 @@ namespace BikeSystem.Shared.Services
             }
         }
 
+        public Task<List<string>> GetActiveRoleNames()
+        {
+            var result = users.GroupBy(x => x.Role)
+                .Where(x => x.Key != "Owner")
+                .Select(x => x.Key)
+                .ToList();
+            return Task.FromResult(result);
+        }
+
         public Task<List<Users>?> GetAllUsers()
         {
             return Task.FromResult(users);
@@ -90,6 +99,20 @@ namespace BikeSystem.Shared.Services
             {
                 throw new DataException("User not found");
             }
+        }
+
+        public Task<List<double?>> GetUsersByRoleCount()
+        {
+            var result = users.GroupBy(x => x.Role)
+                .Where(x => x.Key != "Owner")
+                .Select(x => new
+                {
+                    count = x.Count(),
+                    role = x.Key
+                })
+                .Select(x => (double?)x.count)
+                .ToList();
+            return Task.FromResult(result);
         }
 
         public Task<Users?> IsLogged()

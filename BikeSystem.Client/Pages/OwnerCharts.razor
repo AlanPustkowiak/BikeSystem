@@ -1,7 +1,7 @@
 ﻿@page "/ownercharts"
 @inject IBikeRepairService BikeRepairService
 @inject IUserService UserService
-@rendermode InteractiveAuto
+@rendermode InteractiveServer
 
 @if (user.Role == "Owner")
 {
@@ -23,11 +23,13 @@ else
     private BarChartOptions barChartOptions = default!;
     private ChartData chartData = default!;
     private List<double?> data = default!;
+    private List<double?> data1 = default!;
 
     private PieChart pieChart = default!;
     private PieChartOptions pieChartOptions = default!;
     private ChartData chartData1 = default!;
     private string[]? backgroundColors;
+    private List<string> pieDataCat = default!;
 
     private int datasetsCount = 0;
     private int dataLabelsCount = 0;
@@ -39,22 +41,22 @@ else
     {
         user = await UserService.IsLogged();
         data = await BikeRepairService.GetRepairCountByStatus();
+        data1 = await UserService.GetUsersByRoleCount();
         backgroundColors = ColorUtility.CategoricalTwelveColors;
-        chartData1 = new ChartData { Labels = GetDefaultDataLabels(4), Datasets = GetDefaultDataSets(1) };
+        chartData1 = new ChartData { Labels = GetDefaultDataLabels(), Datasets = GetDefaultDataSets(1) };
 
         pieChartOptions = new();
         pieChartOptions.Responsive = true;
-        pieChartOptions.Plugins.Title!.Text = "2022 - Sales";
+        pieChartOptions.Plugins.Title!.Text = "Users by role";
         pieChartOptions.Plugins.Title.Display = true;
 
 
-        
+
         var labels = new List<string> { "Oczekuje", "W trakcie", "Zakończono" };
         var datasets = new List<IChartDataset>();
 
         var dataset1 = new BarChartDataset()
             {
-                //Data = new List<double?> { 55000, 15000, 18000, 21000 },
                 Data = data,
                 BackgroundColor = new List<string> { ColorUtility.CategoricalTwelveColors[0] },
                 BorderColor = new List<string> { ColorUtility.CategoricalTwelveColors[0] },
@@ -88,64 +90,6 @@ else
         await base.OnAfterRenderAsync(firstRender);
     }
 
-    private async Task RandomizeAsync()
-    {
-        if (chartData1 is null || chartData1.Datasets is null || !chartData1.Datasets.Any()) return;
-
-        var newDatasets = new List<IChartDataset>();
-
-        foreach (var dataset in chartData1.Datasets)
-        {
-            if (dataset is PieChartDataset pieChartDataset
-                && pieChartDataset is not null
-                && pieChartDataset.Data is not null)
-            {
-                var count = pieChartDataset.Data.Count;
-
-                var newData = new List<double?>();
-                for (var i = 0; i < count; i++)
-                {
-                    newData.Add(random.Next(0, 100));
-                }
-
-                pieChartDataset.Data = newData;
-                newDatasets.Add(pieChartDataset);
-            }
-        }
-
-        chartData1.Datasets = newDatasets;
-
-        await pieChart.UpdateAsync(chartData1, pieChartOptions);
-    }
-
-    private async Task AddDatasetAsync()
-    {
-        if (chartData1 is null || chartData1.Datasets is null) return;
-
-        var chartDataset = GetRandomPieChartDataset();
-        chartData1 = await pieChart.AddDatasetAsync(chartData1, chartDataset, pieChartOptions);
-    }
-
-    private async Task AddDataAsync()
-    {
-        if (dataLabelsCount >= 12)
-            return;
-
-        if (chartData1 is null || chartData1.Datasets is null)
-            return;
-
-        var data = new List<IChartDatasetData>();
-        foreach (var dataset in chartData1.Datasets)
-        {
-            if (dataset is PieChartDataset pieChartDataset)
-                data.Add(new PieChartDatasetData(pieChartDataset.Label, random.Next(0, 100), backgroundColors![dataLabelsCount]));
-        }
-
-        chartData1 = await pieChart.AddDataAsync(chartData1, GetNextDataLabel(), data);
-
-        dataLabelsCount += 1;
-    }
-
     #region Data Preparation
 
     private List<IChartDataset> GetDefaultDataSets(int numberOfDatasets)
@@ -162,19 +106,7 @@ else
 
     private PieChartDataset GetRandomPieChartDataset()
     {
-        datasetsCount += 1;
-        return new() { Label = $"Team {datasetsCount}", Data = GetRandomData(), BackgroundColor = GetRandomBackgroundColors() };
-    }
-
-    private List<double?> GetRandomData()
-    {
-        var data = new List<double?>();
-        for (var index = 0; index < dataLabelsCount; index++)
-        {
-            data.Add(random.Next(0, 100));
-        }
-
-        return data;
+        return new() { Label = "Count", Data = data1, BackgroundColor = GetRandomBackgroundColors() };
     }
 
     private List<string> GetRandomBackgroundColors()
@@ -188,19 +120,12 @@ else
         return colors;
     }
 
-    private List<string> GetDefaultDataLabels(int numberOfLabels)
+    private List<string> GetDefaultDataLabels()
     {
-        var labels = new List<string>();
-        for (var index = 0; index < numberOfLabels; index++)
-        {
-            labels.Add(GetNextDataLabel());
-            dataLabelsCount += 1;
-        }
-
-        return labels;
+        pieDataCat = UserService.GetActiveRoleNames().Result;
+        dataLabelsCount = 3;
+        return pieDataCat;
     }
-
-    private string GetNextDataLabel() => $"Product {dataLabelsCount + 1}";
 
     private string GetNextDataBackgrounfColor() => backgroundColors![dataLabelsCount];
 

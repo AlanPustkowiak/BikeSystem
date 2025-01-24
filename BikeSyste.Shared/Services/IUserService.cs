@@ -16,5 +16,7 @@ namespace BikeSystem.Shared.Services
         Task<UserToAddDTO> AddUser(UserToAddDTO userToAddDTO);
         Task<UserToAddDTO> GetUserByEmail(string email);
         Task<UserToAddDTO> UpdateUser(UserToAddDTO userToAddDTO);
+        Task<List<double?>> GetUsersByRoleCount();
+        Task<List<string>> GetActiveRoleNames();
     }
 }

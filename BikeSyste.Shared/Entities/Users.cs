@@ -34,6 +34,13 @@ namespace BikeSystem.Shared.Entities
                 },
                 new Users
                 {
+                    Email = "user1@user.pl",
+                    Password = "user",
+                    Role = "User",
+                    IsLogged = false
+                },
+                new Users
+                {
                     Email = "owner@owner.pl",
                     Password = "owner",
                     Role = "Owner",
