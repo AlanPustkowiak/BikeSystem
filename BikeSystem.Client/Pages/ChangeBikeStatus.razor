@@ -21,8 +21,12 @@
             <option value="Oczekuje na części">Oczekuje na części</option>
             <option value="Opóźnienie">Opóźnienie</option>
         </InputSelect>
+        <br />
         <h3>Koszt usługi:</h3>
         <InputNumber class="form-control w-25" @bind-Value="bikeRepair.Price" placeholder="Cena" />
+        <br />
+        <h3>Planowana data zakończenia naprawy:</h3>
+        <InputDate class="form-control w-25" @bind-Value="bikeRepair.EndDate" />
     </div>
     <button type="submit" class="btn btn-primary mt-2">Akceptuj</button>
 </EditForm>

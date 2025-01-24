@@ -53,6 +53,7 @@ namespace BikeSystem.Shared.Services
                 dbBikeRepair.Date = bikeRepair.Date;
                 dbBikeRepair.Price = bikeRepair.Price;
                 dbBikeRepair.Status = bikeRepair.Status;
+                dbBikeRepair.EndDate = bikeRepair.EndDate;
                 return Task.FromResult(bikeRepair);
             }
             throw new Exception("BikeRepair not found");
@@ -74,6 +75,7 @@ namespace BikeSystem.Shared.Services
             bikeRepair1.Date = DateTime.Now;
             bikeRepair1.Price = 0;
             bikeRepair1.Status = "Nowe";
+            bikeRepair1.EndDate = null;
             bikeRepairs.Add(bikeRepair1);
             return Task.FromResult(bikeRepair1);
         }

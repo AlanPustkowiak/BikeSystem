@@ -22,7 +22,8 @@ else
                 <th scope="col">Opis</th>
                 <th scope="col">Status</th>
                 <th scope="col">Koszt</th>
-                <th scope="col">Data rozpoczęcia</th>
+                <th scope="col">Data przyjęcia</th>
+                <th scope="col">Planowana data zakończenia</th>
                 <th scope="col">Akcja</th>
             </tr>
         </thead>
@@ -35,6 +36,7 @@ else
                     <td>@bikeRepair.Status</td>
                     <td>@bikeRepair.Price</td>
                     <td>@bikeRepair.Date</td>
+                    <td>@bikeRepair.EndDate</td>
                     @if (user.Role != "User")
                     {
                         <td><ChangeBikeStatusButton id="@bikeRepair.Id" /></td>

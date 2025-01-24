@@ -14,7 +14,8 @@ namespace BikeSystem.Shared.Entities
         public DateTime Date { get; set; }
         public float Price { get; set; }
         public string Status { get; set; }
-        
+        public DateOnly? EndDate { get; set; }
+
         public static List<BikeRepair> GetDefaultBikeRepairs()
         {
             return new List<BikeRepair>
@@ -26,7 +27,8 @@ namespace BikeSystem.Shared.Entities
                     Description = "Naprawa roweru",
                     Date = DateTime.Now,
                     Price = 20,
-                    Status = "W trakcie"
+                    Status = "W trakcie",
+                    EndDate = new DateOnly(2025, 10, 10)
                 },
                 new BikeRepair
                 {
@@ -35,7 +37,8 @@ namespace BikeSystem.Shared.Entities
                     Description = "Naprawa roweru",
                     Date = DateTime.Now,
                     Price = 15,
-                    Status = "W trakcie"
+                    Status = "W trakcie",
+                    EndDate = new DateOnly(2025, 05, 18)
                 },
                 new BikeRepair
                 {
@@ -44,7 +47,8 @@ namespace BikeSystem.Shared.Entities
                     Description = "Naprawa roweru",
                     Date = DateTime.Now,
                     Price = 25,
-                    Status = "Zakończono"
+                    Status = "Zakończono",
+                    EndDate = new DateOnly(2025, 02, 10)
                 }
             };
         }
