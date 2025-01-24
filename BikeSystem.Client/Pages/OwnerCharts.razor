@@ -35,9 +35,10 @@ else
     private Random random = new();
 
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        user = UserService.IsLogged().Result;
+        user = await UserService.IsLogged();
+        data = await BikeRepairService.GetRepairCountByStatus();
         backgroundColors = ColorUtility.CategoricalTwelveColors;
         chartData1 = new ChartData { Labels = GetDefaultDataLabels(4), Datasets = GetDefaultDataSets(1) };
 
@@ -47,7 +48,7 @@ else
         pieChartOptions.Plugins.Title.Display = true;
 
 
-        data = BikeRepairService.GetRepairCountByStatus().Result;
+        
         var labels = new List<string> { "Oczekuje", "W trakcie", "Zakończono" };
         var datasets = new List<IChartDataset>();
 

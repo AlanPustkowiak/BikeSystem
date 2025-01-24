@@ -19,10 +19,9 @@ else
         <thead>
             <tr>
                 <th scope="col">Id</th>
-                <th scope="col">Nazwa</th>
-                <th scope="col">Opis</th>
+                <th scope="col">Model</th>
+                <th scope="col">Opis problemu</th>
                 <th scope="col">Typ</th>
-                <th scope="col">Cena</th>
                 <th scope="col">Akcja</th>
             </tr>
         </thead>
@@ -34,7 +33,6 @@ else
                     <td>@bike.Name</td>
                     <td>@bike.Description</td>
                     <td>@bike.Type</td>
-                    <td>@bike.Price</td>
                     <td><DeleteButton Id="@bike.Id" /><EditButton Id="@bike.Id" /></td>
                 </tr>
             }

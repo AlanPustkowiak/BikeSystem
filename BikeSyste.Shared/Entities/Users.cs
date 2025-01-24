@@ -22,14 +22,21 @@ namespace BikeSystem.Shared.Entities
                 {
                     Email = "test@test.pl",
                     Password = "test",
-                    Role = "admin",
+                    Role = "Admin",
                     IsLogged = false
                 },
                 new Users
                 {
                     Email = "user@user.pl",
                     Password = "user",
-                    Role = "user",
+                    Role = "User",
+                    IsLogged = false
+                },
+                new Users
+                {
+                    Email = "owner@owner.pl",
+                    Password = "owner",
+                    Role = "Owner",
                     IsLogged = false
                 }
             };
