@@ -82,4 +82,5 @@ namespace BikeSystem.Shared.Services
         {
             return bikeRepairs.Max(x => x.Id);
         }
+    }
 }
