@@ -10,12 +10,15 @@ namespace BikeSystem.Shared.Services
     public class BikeRepairService : IBikeRepairService
     {
         private static List<BikeRepair> bikeRepairs;
-        public BikeRepairService()
+        private IBikeService _bikeService;
+        public BikeRepairService(IBikeService bikeService)
         {
             if (bikeRepairs == null)
             {
                 bikeRepairs = BikeRepair.GetDefaultBikeRepairs();
             }
+
+            _bikeService = bikeService;
         }
         public Task<List<BikeRepair>> GetAllBikeRepairs()
         {
@@ -61,5 +64,22 @@ namespace BikeSystem.Shared.Services
             var repairCountByStatus = bikeRepairs.GroupBy(x => x.Status).Select(x => (double?)x.Count()).ToList();
             return Task.FromResult(repairCountByStatus);
         }
-    }
+
+        public Task<BikeRepair> AddBikeRepair(Bike bikeRepair)
+        {
+            BikeRepair bikeRepair1 = new BikeRepair();
+            bikeRepair1.Id = GetMaxId() + 1;
+            bikeRepair1.BikeId = _bikeService.GetMaxId();
+            bikeRepair1.Description = bikeRepair.Description;
+            bikeRepair1.Date = DateTime.Now;
+            bikeRepair1.Price = 0;
+            bikeRepair1.Status = "Oczekuje";
+            bikeRepairs.Add(bikeRepair1);
+            return Task.FromResult(bikeRepair1);
+        }
+
+        public int GetMaxId()
+        {
+            return bikeRepairs.Max(x => x.Id);
+        }
 }

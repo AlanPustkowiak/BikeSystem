@@ -60,9 +60,14 @@ namespace BikeSystem.Shared.Services
 
         public Task<Bike> AddBike(Bike bike)
         {
-            bike.Id = bikes.Max(x => x.Id) + 1;
+            bike.Id = GetMaxId() + 1;
             bikes.Add(bike);
             return Task.FromResult(bike);
+        }
+
+        public int GetMaxId()
+        {
+            return bikes.Max(x => x.Id);
         }
     }
 }

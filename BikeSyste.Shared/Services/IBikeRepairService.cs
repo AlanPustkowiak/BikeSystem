@@ -14,5 +14,6 @@ namespace BikeSystem.Shared.Services
         Task<BikeRepair> GetBikeRepairById(int id);
         Task<BikeRepair> UpdateBikeRepair(int id, BikeRepair bikeRepair);
         Task<List<double?>> GetRepairCountByStatus();
+        Task<BikeRepair> AddBikeRepair(Bike bikeRepair);
     }
 }

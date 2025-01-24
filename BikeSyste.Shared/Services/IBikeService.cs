@@ -14,5 +14,6 @@ namespace BikeSystem.Shared.Services
         Task<Bike> GetBikeById(int id);
         Task<Bike> UpdateBike(int id,Bike bike);
         Task<Bike> AddBike(Bike bike);
+        int GetMaxId();
     }
 }
