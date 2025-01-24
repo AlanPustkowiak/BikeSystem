@@ -23,6 +23,7 @@
     async Task SaveBike()
     {
         await BikeService.AddBike(bike);
+        await BikeRepairService.AddBikeRepair(bike);
         NavigationManager.NavigateTo("/bikes");
     }
 }

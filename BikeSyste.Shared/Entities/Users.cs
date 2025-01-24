@@ -20,8 +20,8 @@ namespace BikeSystem.Shared.Entities
             {
                 new Users
                 {
-                    Email = "test@test.pl",
-                    Password = "test",
+                    Email = "admin@admin.pl",
+                    Password = "admin",
                     Role = "Admin",
                     IsLogged = false
                 },

@@ -79,8 +79,11 @@ else
     {
         if (firstRender)
         {
-            await barChart.InitializeAsync(chartData, barChartOptions);
-            await pieChart.InitializeAsync(chartData1, pieChartOptions);
+            if (user.Role == "Owner" && chartData != null && chartData1 != null)
+            {
+                await barChart.InitializeAsync(chartData, barChartOptions);
+                await pieChart.InitializeAsync(chartData1, pieChartOptions);
+            }
         }
         await base.OnAfterRenderAsync(firstRender);
     }
